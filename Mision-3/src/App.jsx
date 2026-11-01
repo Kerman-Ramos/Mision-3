@@ -6,7 +6,6 @@ import { claveCache } from './funciones.js';
 
 
 export default function App() {
-	const [refresacando, setRefresacando] = useState(false);
 	const [vista, setVista] = useState('home');
 	const [historial, setHistorial] = useState(['']);
 	const [posicionHistorial, setPosicionHistorial] = useState(0);
@@ -61,15 +60,12 @@ export default function App() {
 	}
 
 	function refrescar() {
-		setRefresacando(() => true);
 		try {
 			localStorage.removeItem(claveCache(historial[posicionHistorial]));
 		} catch {
 			// Si el almacenamiento falla, seguimos con la aplicación.
 		}
 		setHistorial([...historial]);
-		setPosicionHistorial(posicionHistorial);
-		setRefresacando(() => false);
 	}
 
 	function casa() {
@@ -93,7 +89,8 @@ export default function App() {
 					realizarBusqueda={realizarBusqueda}
 					compacto={esResultados}
 					mover={mover}
-					termino={refresacando ? '' : historial[posicionHistorial%historial.length]}
+					termino={historial[posicionHistorial%historial.length]}
+					historial={historial}
 				/>
 				{vista === 'resultados' && <Resultados historial={historial} posicionHistorial={posicionHistorial} />}
 				

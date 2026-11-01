@@ -25,7 +25,7 @@ export default function Navegador({ realizarBusqueda = () => {}, mover = () => {
 		}
 	}
 	
-	const urlActual = historial[posicionHistorial] ? `https://es.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(historial[posicionHistorial])}&format=json&origin=%2A` : '';
+	const urlActual = historial[posicionHistorial] ? `https://es.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(historial[posicionHistorial])}&gsrlimit=10&prop=extracts&exintro=1&explaintext=1&exchars=600&format=json&origin=*` : '';
 	return (
 		<nav id="barra-navegador">
 			<button id="retroceder" onClick={() => mover(-1)} disabled={posicionHistorial === 0}>←</button>
@@ -34,7 +34,7 @@ export default function Navegador({ realizarBusqueda = () => {}, mover = () => {
 			<button id="casa" onClick={() => mover('home')} disabled={posicionHistorial%historial.length === 0}>
 				<img src={CasaIcono} alt="Inicio" id="icono-casa" />
 			</button>
-			<Input id="entrada-url" placeholder="Busca o escribe una URL" onKeyDown={handleKeyDown} valor={urlActual} select={true} />
+			<Input id="entrada-url" placeholder="Busca o escribe una URL" onKeyDown={handleKeyDown} valor={urlActual} select={true} historial={historial} />
 		</nav>
 	)
 }
