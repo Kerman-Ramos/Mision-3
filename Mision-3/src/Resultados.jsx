@@ -50,8 +50,13 @@ export default function Resultados({ historial, posicionHistorial = 0 }) {
 			try {
 				const parametros = new URLSearchParams({
 					action: 'query',
-					list: 'search',
-					srsearch: busqueda,
+					generator: 'search',
+					gsrsearch: busqueda,
+					gsrlimit: '10',
+					prop: 'extracts',
+					exintro: '1',
+					explaintext: '1',
+					exchars: '600',
 					format: 'json',
 					origin: '*',
 				});
@@ -65,7 +70,9 @@ export default function Resultados({ historial, posicionHistorial = 0 }) {
 				}
 
 				const datos = await respuesta.json();
-				const resultadosLimpios = datos?.query?.search;
+				const paginas  = datos?.query?.pages;
+
+				const resultadosLimpios = paginas ? Object.values(paginas) : [];
 
 				if (!Array.isArray(resultadosLimpios)) {
 					throw new Error('La respuesta de Wikipedia no es válida.');
@@ -110,7 +117,7 @@ export default function Resultados({ historial, posicionHistorial = 0 }) {
 					}}
 				>
 					<h3>{resultado.title}</h3>
-					<p>{resultado.snippet.replace(/<[a-zA-Z][^>]*>/g, '')}</p>
+					<p>{resultado.extract || 'No hay descripción disponible.'}</p>
 				</article>
 			))}
 		</section>
