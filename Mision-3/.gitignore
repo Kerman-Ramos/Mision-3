@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+main.js
+api.js
+busqueda.js
+render.js
