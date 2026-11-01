@@ -130,7 +130,7 @@ body {
 }
 
 #pantalla-principal.home #vista-buscador {
-	gap: 28px;
+	gap: 34px;
 	padding: 0;
 	border: none;
 	border-radius: 0;
@@ -141,7 +141,7 @@ body {
 
 #logo {
 	width: 100%;
-	max-width: 520px;
+	max-width: 620px;
 	height: auto;
 	object-fit: contain;
 	filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.18));
@@ -159,6 +159,12 @@ body {
 	outline: none;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18);
 	transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#pantalla-principal.home #caja-busqueda {
+	max-width: 680px;
+	padding: 17px 26px;
+	font-size: 1.12rem;
 }
 
 #caja-busqueda:focus {
@@ -300,6 +306,16 @@ body {
 	#pantalla-principal.home #vista-buscador {
 		padding: 0 8px;
 		gap: 22px;
+	}
+
+	#pantalla-principal.home #logo {
+		max-width: 560px;
+	}
+
+	#pantalla-principal.home #caja-busqueda {
+		max-width: none;
+		padding: 15px 20px;
+		font-size: 1rem;
 	}
 
 	#vista-buscador.compacto {
